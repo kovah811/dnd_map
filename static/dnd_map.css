@@ -1,11 +1,7 @@
 html, body {
 	height: 100%;
 	margin: 0;
-	padding-top: 10px
-}
-.main-content {
-  padding: 40px 15px;
-  text-align: center;
+	padding-top: 20px
 }
 #map {
 	width: 100%;

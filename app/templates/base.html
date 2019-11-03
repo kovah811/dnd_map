@@ -41,12 +41,12 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container main-content">
+    <div class="container">
         {% with messages = get_flashed_messages() %}
         {% if messages %}
         <ul>
             {% for message in messages %}
-            <li>{{ message }}</li>
+            <div class="alert alert-info" role="alert" style="margin-left: -40px;">{{ message }}</div>
             {% endfor %}
         </ul>
         {% endif %}
