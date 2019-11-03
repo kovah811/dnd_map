@@ -1,34 +1,9 @@
-{% block content %}
-    <form action="" method="post">
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.location_name.label }}<br>
-            {{ form.location_name() }}<br>
-            {% for error in form.location_name.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.wiki_link.label }}<br>
-            {{ form.wiki_link() }}<br>
-            {% for error in form.wiki_link.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.latitude.label }}<br>
-            {{ form.latitude(readonly=true) }}<br>
-            {% for error in form.latitude.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.longitude.label }}<br>
-            {{ form.longitude(readonly=true) }}<br>
-            {% for error in form.longitude.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>{{ form.submit() }}</p>
-    </form>
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+    <div class="row">
+        <div class="col-md-4">
+            {{ wtf.quick_form(form, horizontal_columns=('lg', 2, 10)) }}
+        </div>
+    </div>
 {% endblock %}
