@@ -1,0 +1,13 @@
+html, body {
+	height: 100%;
+	margin: 0;
+	padding-top: 10px
+}
+.main-content {
+  padding: 40px 15px;
+  text-align: center;
+}
+#map {
+	width: 100%;
+	height: 550px;
+}
