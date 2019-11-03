@@ -1,9 +1,8 @@
 {% extends "base.html" %}
 
-{% block content %}
+{% block app_content %}
     <h1>DnD Map</h1>
     <div id="map"></div>
-    <script src="{{url_for('static', filename='dnd_map.js')}}"></script>
 
     <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog">
@@ -23,8 +22,15 @@
             </div>
         </div>
     </div>
+{% endblock %}
 
+{% block page_scripts %}
     <script>
+        var map = makeMap();
+
+        map.on('click', function(e){
+                addMarker(e.latlng, map, true, "New marker");
+        });
         $(document).ready(function() {
             $('form').submit(function (e) {
                 var url = "{{ url_for('add_marker') }}"; // send the form data here.

@@ -83,9 +83,3 @@ function addMarker(latlng, map, popup, title) {
         newMarker.openPopup();
     }
 }
-
-var map = makeMap();
-
-map.on('click', function(e){
-        addMarker(e.latlng, map, true, "New marker");
-});
