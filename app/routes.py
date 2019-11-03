@@ -1,12 +1,22 @@
-from flask import render_template, redirect, jsonify, flash, url_for
-from flask_login import current_user, login_user, logout_user
+from flask import (
+    render_template,
+    redirect,
+    jsonify,
+    flash,
+    url_for,
+    request,
+)
+from flask_login import current_user, login_user, logout_user, login_required
+from http.client import HTTPResponse
+from werkzeug.urls import url_parse
 
 from app import app
 from app.forms import AddMarkerForm, LoginForm
 from app.models import User
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
+@app.route('/index')
 def index():
     form = AddMarkerForm()
 
@@ -38,6 +48,15 @@ def logout():
 def add_marker():
     form = AddMarkerForm()
     if form.validate_on_submit():
-        return jsonify(data={'message': 'Added marker: {}'.format(
-            form.location_name.data)})
+        if current_user.is_authenticated:
+            return jsonify(
+                {'message': 'Added marker: {}'.format(form.location_name.data)}
+            )
+        else:
+            return jsonify(
+                {
+                    'message': 'Not authorized',
+                    'url': url_for('login') + '?next=/',
+                }
+            )  # Not sure about this...
     return jsonify(data=form.errors)

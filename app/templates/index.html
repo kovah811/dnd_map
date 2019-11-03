@@ -39,8 +39,12 @@
                     url: url,
                     data: $('form').serialize(), // serializes the form's elements.
                     success: function (data) {
-                        alert(data.data.message)
-                        console.log(data)  // display the returned data in the console.
+                        if (data.message === 'Not authorized') {
+                               window.location = data.url
+                        } else {
+                            alert(data.message)
+                            console.log(data)  // display the returned data in the console.
+                        }
                     }
                 });
                 e.preventDefault(); // block the traditional submission of the form.
