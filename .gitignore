@@ -41,3 +41,6 @@ nosetests.xml
 venv
 app.db
 dnd_map.log*
+
+# dotenv
+.env
