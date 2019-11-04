@@ -39,8 +39,10 @@ def login():
 
 
 @app.route('/logout')
+@login_required
 def logout():
     logout_user()
+    flash('You have logged out')
     return redirect(url_for('index'))
 
 

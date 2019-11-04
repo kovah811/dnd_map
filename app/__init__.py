@@ -12,7 +12,9 @@ bootstrap = Bootstrap(app)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 login = LoginManager(app)
-login.login_view = 'login'
+login.login_view = 'google.login'
 
 
-from app import routes, models, errors
+from app import routes, models, errors, oauth
+
+app.register_blueprint(oauth.blueprint, url_prefix='/login')
