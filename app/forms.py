@@ -1,13 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, FloatField
-from wtforms.validators import DataRequired, Email, EqualTo, ValidationError
-
-
-class LoginForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired()])
-    remember_me = BooleanField('Remember Me')
-    submit = SubmitField('Log In')
+from wtforms import StringField, SubmitField, FloatField
+from wtforms.validators import DataRequired
 
 
 class AddMarkerForm(FlaskForm):
