@@ -15,6 +15,8 @@ login = LoginManager(app)
 login.login_view = 'google.login'
 
 
-from app import routes, models, errors, oauth
+from app.errors import bp as errors_bp
+app.register_blueprint(errors_bp)
 
+from app import routes, models, oauth
 app.register_blueprint(oauth.blueprint, url_prefix='/login')
