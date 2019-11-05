@@ -13,3 +13,10 @@ class Config(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     GOOGLE_OAUTH_CLIENT_ID = os.environ.get("GOOGLE_OAUTH_CLIENT_ID")
     GOOGLE_OAUTH_CLIENT_SECRET = os.environ.get("GOOGLE_OAUTH_CLIENT_SECRET")
+
+    ACCESS = {
+        'guest': 0,
+        'user': 1,
+        'dm': 2,
+        'admin': 3
+    }

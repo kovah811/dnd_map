@@ -42,7 +42,9 @@ def google_logged_in(blueprint, token):
 
     else:
         # Create a new local user account for this user
-        user = User(email=info["email"])
+        user = User(email=info["email"], firstname=info["given_name"],
+                    lastname=info["family_name"], fullname=info["name"],
+                    picture=info["picture"])
         # Associate the new local user account with the OAuth token
         oauth.user = user
         # Save and commit our database models
