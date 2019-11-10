@@ -3,8 +3,7 @@ from flask_login import UserMixin
 from flask_dance.consumer.storage.sqla import OAuthConsumerMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from app import db
-from app import login
+from app import db, login
 
 
 @login.user_loader

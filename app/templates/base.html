@@ -14,53 +14,11 @@
 	<link rel="stylesheet" href="{{url_for('static', filename='Leaflet.Coordinates-0.1.5.css')}}"/>
 {% endblock %}
 
-{% block navbar %}
-<nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header navbar-left pull-left">
-      <a href="{{ url_for('index') }}" class="navbar-brand">DnD Map</a>
-    </div>
-    <div class="navbar-header navbar-right pull-right">
-      <ul class="nav navbar-header pull-left">
-{% if current_user.is_anonymous %}
-        <li class="pull-left"><a href="url_for('login')" title="Login" style="padding-bottom: 0;">Login</a></li>
-{% else %}
-        <li class="navbar-text pull-left">{{ current_user.firstname }}</li>
-        <li class="dropdown pull-left">
-          <a href="#" data-toggle="dropdown" style="color: rgb(119, 119, 119); margin-top: 5px; --darkreader-inline-color:#bdb8af;" class="dropdown-toggle" data-darkreader-inline-color="">
-            <span class="glyphicon glyphicon-user"></span>
-            <b class="caret"></b>
-          </a>
-          <ul class="dropdown-menu">
-            <li>
-              <a href="#" title="Profile">Profile</a>
-            </li>
-            <li>
-              <a href="{{ url_for('auth.logout') }}" title="Logout">Logout </a>
-            </li>
-          </ul>
-        </li>
-{% endif %}
 
-        <li class="pull-right">
-      <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-        </li>
-          </ul>
-    </div>
-    <div class="visible-xs-block clearfix"></div>
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav navbar-left">
-        <li><a href="{{ url_for('index') }}" title="Home">Home</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+{% block navbar %}
+{{nav.frontend_top.render()}}
 {% endblock %}
+
 
 {% block content %}
     <div class="container">
@@ -89,6 +47,17 @@
     <!-- Leaflet Coordinates plugin -->
     <script src="{{url_for('static', filename='Leaflet.Coordinates-0.1.5.min.js')}}"></script>
     <script src="{{url_for('static', filename='dnd_map.js')}}"></script>
+
+    <script>
+        import L from 'leaflet';
+        delete L.Icon.Default.prototype._getIconUrl;
+
+        L.Icon.Default.mergeOptions({
+          iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+          iconUrl: require('leaflet/dist/images/marker-icon.png'),
+          shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
+        });
+    </script>
 
     {% block page_scripts %}
     {% endblock %}

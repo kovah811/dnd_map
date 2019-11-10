@@ -33,7 +33,7 @@
         });
         $(document).ready(function() {
             $('form').submit(function (e) {
-                var url = "{{ url_for('add_marker') }}"; // send the form data here.
+                var url = "{{ url_for('frontend.add_marker') }}"; // send the form data here.
                 $.ajax({
                     type: "POST",
                     url: url,
